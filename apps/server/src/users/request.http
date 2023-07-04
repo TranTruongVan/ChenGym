@@ -1,0 +1,34 @@
+### Sign In
+POST http://localhost:4000/users/signin
+Content-Type: application/json
+
+{
+  "email": "Kingchenobama711@gmail.com",
+  "password": "123456"
+}
+
+### Sign Up
+POST http://localhost:4000/users/signup
+Content-Type: application/json
+
+{
+  "email": "abc@gmail.com",
+  "username":"Nguyễn Thị ABC",
+  "password": "123456",
+}
+
+### Sign Up
+PATCH http://localhost:4000/users/2
+Content-Type: application/json
+
+{
+  "email": "abc@gmail.com",
+  "username":"Nguyễn Thị ABC",
+  "password": "123456"
+}
+
+### Ưho am i
+GET http://localhost:4000/users/whoami
+
+### Get user details
+GET http://localhost:4000/users/2

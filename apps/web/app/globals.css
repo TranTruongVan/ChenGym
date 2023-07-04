@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black-2 text-white-1
+  }
+}
+
+@layer components {
+  .container {
+    @apply mx-auto w-11/12 md:max-w-6xl;
+  }
+}
