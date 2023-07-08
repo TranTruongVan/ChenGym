@@ -1,0 +1,2 @@
+type AuthFormType = "signin" | "signup";
+

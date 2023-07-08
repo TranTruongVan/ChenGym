@@ -1,10 +1,12 @@
-import { Module, MiddlewareConsumer } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './users/user.entity';
+import { AuthModule } from './auth/auth.module';
+
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -15,10 +17,18 @@ const cookieSession = require('cookie-session');
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
+      useFactory: (configService: ConfigService) => {
         return {
+          // type: 'mysql',
+          // host: 'localhost',
+          // port: 3306,
+          // username: config.get('DB_USERNAME'),
+          // password: config.get('DB_PASSWORD'),
+          // database: config.get('DB_NAME'),
+
           type: 'sqlite',
-          database: config.get<string>('DB_NAME'),
+          database: configService.get('DB_NAME'),
+
           entities: [UserEntity],
           //chỉ dùng trong môi trường development. Giúp tự động thêm, bớt, cập nhật các cột của các table
           synchronize: true,
@@ -26,6 +36,7 @@ const cookieSession = require('cookie-session');
       },
     }),
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

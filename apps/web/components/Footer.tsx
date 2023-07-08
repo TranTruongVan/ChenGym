@@ -6,24 +6,24 @@ type Props = {};
 
 export default function Footer({}: Props) {
   return (
-    <div className="bg-primary">
+    <div className="bg-primary text-primary-foreground">
       <div className="container">
-        <div className="grid grid-cols-12 gap-6 border-b border-slate-100/50 py-12">
+        <div className="grid grid-cols-12 gap-6 py-12 border-b border-slate-100/50">
           <div className="col-span-12 sm:col-span-6 lg:col-span-3">
-            <h3 className="text-base font-semibold uppercase text-black-1">
+            <h3 className="text-base font-semibold uppercase text-item">
               about
             </h3>
-            <ul className="mt-5 flex flex-col gap-4">
+            <ul className="flex flex-col gap-4 mt-5">
               <li className="cursor-pointer hover:underline">About us</li>
               <li className="cursor-pointer hover:underline">Contact</li>
             </ul>
           </div>
 
           <div className="col-span-12 sm:col-span-6 lg:col-span-3">
-            <h3 className="text-base font-semibold uppercase text-black-1">
+            <h3 className="text-base font-semibold uppercase text-item">
               legal
             </h3>
-            <ul className="mt-5 flex flex-col gap-4">
+            <ul className="flex flex-col gap-4 mt-5">
               <li className="cursor-pointer hover:underline">
                 Terms of Service
               </li>
@@ -33,26 +33,35 @@ export default function Footer({}: Props) {
           </div>
 
           <div className="col-span-12 sm:col-span-6 lg:col-span-3">
-            <h3 className="text-base font-semibold uppercase text-black-1">
+            <h3 className="text-base font-semibold uppercase text-item">
               Get the app
             </h3>
-            <ul className="mt-5 flex flex-col gap-4">
-              <Image
-                alt="android"
-                src="/android-button.png"
-                height={40}
-                width={120}
-              />
-              <Image alt="ios" src="/ios-button.png" height={40} width={120} />
+            <ul className="flex flex-col gap-4 mt-5">
+              <li className="cursor-pointer">
+                <Image
+                  alt="android"
+                  src="/android-button.png"
+                  height={40}
+                  width={120}
+                />
+              </li>
+              <li className="cursor-pointer">
+                <Image
+                  alt="ios"
+                  src="/ios-button.png"
+                  height={40}
+                  width={120}
+                />
+              </li>
             </ul>
           </div>
 
           <div className="col-span-12 sm:col-span-6 lg:col-span-3">
-            <h3 className="text-base font-semibold uppercase text-black-1">
+            <h3 className="text-base font-semibold uppercase text-item">
               Social Media
             </h3>
-            <ul className="mt-5 grid gap-4 sm:grid-cols-2">
-              <li className="group flex cursor-pointer items-center gap-2">
+            <ul className="grid gap-4 mt-5 sm:grid-cols-2">
+              <li className="flex items-center gap-2 cursor-pointer group">
                 <Image
                   alt="facebook"
                   src="/facebook.png"
@@ -61,7 +70,7 @@ export default function Footer({}: Props) {
                 />
                 <span className="group-hover:underline">Facebook</span>
               </li>
-              <li className="group flex cursor-pointer items-center gap-2">
+              <li className="flex items-center gap-2 cursor-pointer group">
                 <Image
                   alt="youtube"
                   src="/youtube.png"
@@ -70,7 +79,7 @@ export default function Footer({}: Props) {
                 />
                 <span className="group-hover:underline">Youtube</span>
               </li>
-              <li className="group flex cursor-pointer items-center gap-2">
+              <li className="flex items-center gap-2 cursor-pointer group">
                 <Image
                   alt="twitter"
                   src="/twitter.png"
@@ -79,7 +88,7 @@ export default function Footer({}: Props) {
                 />
                 <span className="group-hover:underline">Twitter</span>
               </li>
-              <li className="group flex cursor-pointer items-center gap-2">
+              <li className="flex items-center gap-2 cursor-pointer group">
                 <Image
                   alt="instagram"
                   src="/instagram.png"
@@ -88,7 +97,7 @@ export default function Footer({}: Props) {
                 />
                 <span className="group-hover:underline">Instagram</span>
               </li>
-              <li className="group flex cursor-pointer items-center gap-2">
+              <li className="flex items-center gap-2 cursor-pointer group">
                 <Image
                   alt="linkedin"
                   src="/linkedin.png"
@@ -101,10 +110,10 @@ export default function Footer({}: Props) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 sm:flex-row items-center justify-between pt-6 pb-12">
+        <div className="flex flex-col items-center justify-between gap-4 pt-6 pb-12 sm:flex-row">
           <Link
             href="/"
-            className="flex items-center gap-2 text-xl font-bold uppercase text-white-1"
+            className="flex items-center gap-2 text-xl font-bold uppercase"
           >
             <Image alt="logo" src="/lion-white.png" height={36} width={36} />
             ChenGym

@@ -6,63 +6,31 @@ import {
   NotFoundException,
   Param,
   Patch,
-  Post,
-  Query,
-  Session,
+  Req,
   UseGuards,
 } from '@nestjs/common';
-import { SignUpDto } from './dtos/sign-up.dto';
 import { UsersService } from './users.service';
-import { AuthService } from './auth.service';
-import { UpdateUserDto } from './dtos/update-user.dto';
-import { UserDto } from './dtos/user.dto';
-import { UserEntity } from './user.entity';
-import { AuthGuard } from 'apps/server/guard/auth.guard';
 import { Serialize } from 'apps/server/interceptors/serialize.interceptor';
-import { CurrentUser } from './decorators/current-user.decorator';
-import { SignInDto } from './dtos/sign-in.dto';
-
+import { UserDto } from './dtos/user.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
+import { Request } from 'express';
+import { MyJwtGuard } from '@server/auth/guard/myjwt.guard';
+import { CurrentUser } from '@server/auth/decorators/current-user.decorator';
+import { UserEntity } from './user.entity';
 @Controller('users')
 @Serialize(UserDto)
 export class UsersController {
-  constructor(
-    private usersService: UsersService,
-    private authService: AuthService,
-  ) {}
+  constructor(private usersService: UsersService) {}
 
-  @Post('/signup')
-  async createUser(@Body() body: SignUpDto, @Session() session: any) {
-    const user = await this.authService.signup(
-      body.email.toLowerCase(),
-      body.password,
-      body.username,
-      body.avatarUrl,
-    );
-    session.userId = user.id;
-    return user;
-  }
-
-  @Post('/signin')
-  async signin(@Body() body: SignInDto, @Session() session: any) {
-    const user = await this.authService.signin(body.email, body.password);
-    session.userId = user.id;
-    return user;
-  }
-
-  @Post('/signout')
-  async signout(@Session() session: any) {
-    session.userId = null;
-  }
-
-  @Get('/whoami')
-  @UseGuards(AuthGuard)
+  @UseGuards(MyJwtGuard)
+  @Get('/who-am-i')
   async whoAmI(@CurrentUser() user: UserEntity) {
     return user;
   }
 
   @Get('/:id')
   async findUser(@Param('id') id: string) {
-    const user = await this.usersService.findOne(parseInt(id));
+    const user = await this.usersService.findOneById(parseInt(id));
 
     if (!user) {
       throw new NotFoundException();

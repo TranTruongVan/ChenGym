@@ -3,13 +3,38 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #1f2937;
+
+    --muted: #e5e6e6;
+    --card: #f2f2f2;
+
+    --primary: #1db954;
+    --primary-foreground: #ffffff;
+  }
+
+  .dark {
+    --background: #191e24;
+    --foreground: #e7f7f6;
+
+    --muted: #1d232a;
+    --card: #15191e;
+  }
+}
+
+@layer base {
   body {
-    @apply bg-black-2 text-white-1
+    @apply bg-background text-foreground;
   }
 }
 
 @layer components {
   .container {
     @apply mx-auto w-11/12 md:max-w-6xl;
+  }
+
+  .page-setup {
+    @apply relative after:relative after:left-0 after:top-0 after:block after:h-20 after:w-screen after:bg-tertiary after:content-none;
   }
 }

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,12 +9,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: "var(--primary)",
+        "primary-foreground": "var(--primary-foreground)",
+
+        foreground: "var(--foreground)",
+        background: "var(--background)",
+
         secondary: "#16873D",
-        primary: "#1DB954",
         tertiary: "#1B3B26",
-        "white-1": "#e4e6eb", //text
-        "black-1": "#1d232a", //background
-        "black-2": "#2a323c", //items
+
+        muted: "var(--muted)",
+        card: "var(--card)",
       },
     },
   },
@@ -25,17 +31,7 @@ module.exports = {
         mytheme: {
           secondary: "#16873D",
           primary: "#1DB954",
-          tertiary: "#1B3B26",
-          "white-1": "#e4e6eb", //text
-          "black-1": "#1d232a", //background
-          "black-2": "#2a323c", //items
-          accent: "#1FB2A5",
-          neutral: "#191D24",
-          "base-100": "#2A303C",
-          info: "#3ABFF8",
-          success: "#36D399",
-          warning: "#FBBD23",
-          error: "#F87272",
+          error: "#f04438",
         },
       },
     ],
