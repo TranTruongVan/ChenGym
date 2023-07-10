@@ -8,7 +8,6 @@ import {
   selectAuthForm,
 } from "@web/store/auth-form.slice";
 import { useAppSelector } from "@web/store/hook";
-import clsx from "clsx";
 import Image from "next/image";
 import React from "react";
 import OAuth from "./OAuth";
@@ -20,13 +19,12 @@ type Props = {};
 export default function AuthForm({}: Props) {
   const { type, display } = useAppSelector(selectAuthForm);
 
+  if (!display) {
+    return;
+  }
+
   return (
-    <div
-      className={clsx(
-        "absolute left-0 top-0 z-40 flex h-[-webkit-fill-available] min-h-screen w-screen items-start justify-center overflow-auto bg-black/40 text-foreground",
-        !display && "hidden"
-      )}
-    >
+    <div className="hide-scroll-bar absolute left-0 top-0 z-40 flex h-[-webkit-fill-available] min-h-screen w-full items-start justify-center overflow-auto bg-black/40 text-foreground">
       <div
         onClick={(e) => {
           e.stopPropagation();

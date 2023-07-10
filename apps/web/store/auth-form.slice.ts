@@ -38,4 +38,4 @@ export const { displaySignInForm, displaySignUpForm, hiddenAuthForm } =
 
 export const selectAuthForm = (state: RootState) => state.authForm;
 
-export default authFormSlice.reducer;
+export const authFormReducer = authFormSlice.reducer;

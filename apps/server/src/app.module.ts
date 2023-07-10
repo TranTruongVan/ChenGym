@@ -30,7 +30,7 @@ const cookieSession = require('cookie-session');
           database: configService.get('DB_NAME'),
 
           entities: [UserEntity],
-          //chỉ dùng trong môi trường development. Giúp tự động thêm, bớt, cập nhật các cột của các table
+          //Just use in dev mode. This help DB auto migration
           synchronize: true,
         };
       },

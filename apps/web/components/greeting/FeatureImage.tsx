@@ -21,12 +21,12 @@ export default function FeatureImage({ lightImg, darkImg, className }: Props) {
 
   if (!mounted) {
     return (
-      <div className={clsx("col-span-6 hidden items-center md:flex", className)}>
-      <div className="relative aspect-[2/1] h-3/4 max-w-full">
-        
+      <div
+        className={clsx("col-span-6 hidden items-center md:flex", className)}
+      >
+        <div className="relative aspect-[2/1] h-3/4 max-w-full" />
       </div>
-    </div>
-    )
+    );
   }
 
   return (

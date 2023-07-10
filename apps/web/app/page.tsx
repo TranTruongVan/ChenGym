@@ -1,18 +1,15 @@
 import { GreetingPage } from "@web/components";
 import React from "react";
-import { getCurrentUser } from "./_actions/user";
+import { getCurrentUser } from "./_actions/auth";
 
 type Props = {};
 
 export default async function page({}: Props) {
-  // const accessToken = localStorage.getItem("access_token");
-  // const currentUser = accessToken ? getCurrentUser(accessToken) : null;
+  const currentUser = await getCurrentUser();
 
-  // console.log("homepage:", currentUser);
+  if (!currentUser) {
+    return <GreetingPage />;
+  }
 
-  return (
-    <>
-      <GreetingPage />
-    </>
-  );
+  return <div className="page-setup">Hello {currentUser.username}</div>;
 }

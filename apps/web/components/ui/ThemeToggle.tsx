@@ -10,6 +10,8 @@ export default function ThemeToggle({}: Props) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  console.log(theme)
+
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true);

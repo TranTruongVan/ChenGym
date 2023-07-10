@@ -6,17 +6,16 @@ import {
   NotFoundException,
   Param,
   Patch,
-  Req,
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Serialize } from 'apps/server/interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import { Request } from 'express';
 import { MyJwtGuard } from '@server/auth/guard/myjwt.guard';
 import { CurrentUser } from '@server/auth/decorators/current-user.decorator';
 import { UserEntity } from './user.entity';
+
 @Controller('users')
 @Serialize(UserDto)
 export class UsersController {

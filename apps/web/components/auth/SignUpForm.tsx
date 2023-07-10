@@ -1,16 +1,19 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpFormType, signUpFormSchema } from "@web/lib/validation/auth";
-import React, { useTransition } from "react";
+import { signUpFormSchema, signUpFormType } from "@web/lib/validation/auth";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "./Input";
-import { z } from "zod";
-import { signUpAction } from "@web/app/_actions/user";
+import { signUpAction } from "@web/app/_actions/auth";
+import { store } from "@web/store";
+import { hiddenAuthForm } from "@web/store/auth-form.slice";
+import {
+  displayLoadingScreen,
+  hiddenLoadingScreen,
+} from "@web/store/loading-screen.slice";
 
 type Props = {};
 
 export default function SignUpForm({}: Props) {
-  const [isPending, startTransition] = useTransition();
-
   const {
     register,
     handleSubmit,
@@ -20,26 +23,26 @@ export default function SignUpForm({}: Props) {
     resolver: zodResolver(signUpFormSchema),
   });
 
-  const onSubmit = (data: signUpFormType) => {
-    console.log("client:", data);
-
-    startTransition(async () => {
-      try {
-        const res = await signUpAction(data);
-        if (res.success) {
-          localStorage.setItem("access_token", res.accessToken);
-        } else {
-          Object.keys(res.filedErrors).map((key) => {
-            //avatarUrl only contains in case of OAuth
-            const fieldKey = key as keyof Omit<signUpFormType, "avatarUrl">;
-            setError(fieldKey, { message: res.filedErrors[fieldKey] });
-          });
-        }
-      } catch (error) {
-        console.log(error);
+  const onSubmit = async (data: signUpFormType) => {
+    store.dispatch(displayLoadingScreen());
+    try {
+      const res = await signUpAction(data);
+      if (res.success) {
+        localStorage.setItem("access_token", res.accessToken);
+        store.dispatch(hiddenAuthForm());
+      } else {
+        Object.keys(res.filedErrors).map((key) => {
+          //avatarUrl only contains in case of OAuth
+          const fieldKey = key as keyof Omit<signUpFormType, "avatarUrl">;
+          setError(fieldKey, { message: res.filedErrors[fieldKey] });
+        });
       }
-    });
+    } catch (error) {
+      console.log(error);
+    }
+    store.dispatch(hiddenLoadingScreen());
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <Input

@@ -1,14 +1,30 @@
-import { Footer, Header } from "@web/components";
+import {
+  Footer,
+  Header,
+  LoadingScreen,
+  TailwindIndicator,
+} from "@web/components";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@web/components/ThemeProvider";
-import { TailwindIndicator } from "@web/components/TailwindIndicator";
+import { getCurrentUser } from "./_actions/auth";
+import Providers from "../components/HOC/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "ChenGym",
-  description: "This is ChenGym greeting page",
+export const generateMetadata = async () => {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    return {
+      title: "ChenGym",
+      description: "This is ChenGym greeting page",
+    };
+  } else {
+    return {
+      title: `ChenGym-${currentUser.username}`,
+      description: `Welcome  ${currentUser.username}`,
+    };
+  }
 };
 
 export default function RootLayout({
@@ -19,14 +35,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <Providers>
+          <LoadingScreen />
           <Header />
           <main>
             {children}
             <TailwindIndicator />
           </main>
           <Footer />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -11,8 +11,8 @@ export class UsersService {
 
   create(
     email: string,
-    password: string,
     username: string,
+    password?: string,
     avatarUrl?: string,
   ) {
     const user = this.repo.create({ email, password, username, avatarUrl });
@@ -31,7 +31,7 @@ export class UsersService {
     return this.repo.find({ where: { email } });
   }
 
-  findByName(username: string) {
+  findByUsername(username: string) {
     return this.repo.find({ where: { username } });
   }
 

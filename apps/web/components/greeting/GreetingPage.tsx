@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import { SignUpBtn } from "../auth/AuthBtn";
+import { SignUpBtn } from "../HOC/AuthBtn";
 import FeatureImage from "./FeatureImage";
 
 type Props = {};
@@ -18,13 +18,13 @@ export default function GreetingPage({}: Props) {
           muted
         />
 
-        <div className="container absolute left-1/2 top-[40%] z-10 flex -translate-x-1/2 flex-col items-center text-primary-foreground ">
-          <h1 className="text-3xl font-bold text-center md:text-6xl drop-shadow-2xl">
+        <div className="container absolute left-1/2 top-[35%] z-10 flex -translate-x-1/2 flex-col items-center text-primary-foreground ">
+          <h1 className="text-3xl font-bold text-center drop-shadow-2xl md:text-6xl">
             A better way to track your workouts
           </h1>
 
           <SignUpBtn>
-            <button className="w-48 my-8 btn-primary btn md:btn-lg md:my-16 md:w-72">
+            <button className="w-48 my-8 btn-primary btn md:btn-lg md:my-16 md:w-72 text-primary-foreground">
               Start Now
             </button>
           </SignUpBtn>
@@ -44,7 +44,7 @@ export default function GreetingPage({}: Props) {
 
       <section className="w-full bg-primary bg-contain bg-right bg-no-repeat py-12 md:bg-[url('/trainer-bg.jpg')] md:py-24">
         <div className="container">
-          <div className="flex flex-col items-center w-full gap-4 md:w-1/2 md:items-start md:gap-8 text-primary-foreground">
+          <div className="flex flex-col items-center w-full gap-4 text-primary-foreground md:w-1/2 md:items-start md:gap-8">
             <h2 className="text-2xl font-bold text-item md:text-4xl">
               Online personal trainer
             </h2>
@@ -58,7 +58,7 @@ export default function GreetingPage({}: Props) {
 
             <Link
               href="/trainer"
-              className="w-48 normal-case btn-item btn md:btn-lg md:w-72"
+              className="w-48 normal-case btn-item btn md:btn-lg md:w-72 text-primary-foreground"
             >
               Learn More
             </Link>
@@ -85,14 +85,19 @@ export default function GreetingPage({}: Props) {
             </button>
           </div>
 
-          <FeatureImage className="justify-end" lightImg="/features-img.png" darkImg="/features-img-dark.png" />
+          <FeatureImage
+            className="justify-end"
+            lightImg="/features-img.png"
+            darkImg="/features-img-dark.png"
+          />
         </div>
 
         <div className="container md:grid md:grid-cols-12 md:gap-8">
-
-        <FeatureImage className="justify-start" lightImg="/progress-img.png" darkImg="/progress-img-dark.png" />
-
-          
+          <FeatureImage
+            className="justify-start"
+            lightImg="/progress-img.png"
+            darkImg="/progress-img-dark.png"
+          />
 
           <div className="flex flex-col items-center justify-center w-full gap-4 md:col-span-6 md:items-start md:gap-8">
             <h2 className="text-2xl font-bold text-center md:text-4xl">
@@ -131,8 +136,11 @@ export default function GreetingPage({}: Props) {
             </button>
           </div>
 
-          <FeatureImage className="justify-end" lightImg="/database-img.png" darkImg="/database-img-dark.png" />
-
+          <FeatureImage
+            className="justify-end"
+            lightImg="/database-img.png"
+            darkImg="/database-img-dark.png"
+          />
         </div>
       </section>
     </div>

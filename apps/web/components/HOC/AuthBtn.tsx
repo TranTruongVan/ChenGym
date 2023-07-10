@@ -28,7 +28,7 @@ function AuthBtn({ children, type }: AuthButtonProps) {
   return (
     <div
       className="cursor-pointer"
-      onClick={() => {
+      onClick={() => { 
         store.dispatch(
           type === "signin" ? displaySignInForm() : displaySignUpForm()
         );

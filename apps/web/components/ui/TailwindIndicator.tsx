@@ -1,4 +1,4 @@
-export function TailwindIndicator() {
+export default function TailwindIndicator() {
   return (
     <div className="fixed z-50 flex items-center justify-center p-3 font-mono font-medium text-white bg-gray-800 bottom-1 left-1 rounded-xl">
       Screen:
